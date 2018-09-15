@@ -14,7 +14,8 @@ protocol HTTPType {
     var path: String { get }
     var method: HTTPMethod { get }
     var encoding: ParameterEncoding { get }
-    var header: [String: String]? { get }
+    var requestTimeout: TimeInterval? { get }
+    var responseTimeout: TimeInterval? { get }
 }
 
 extension HTTPType {
@@ -34,7 +35,11 @@ extension HTTPType {
         return JSONEncoding.default
     }
     
-    var header: [String: String]? {
+    var requestTimeout: TimeInterval? {
+        return nil
+    }
+    
+    var responseTimeout: TimeInterval? {
         return nil
     }
 }

@@ -21,6 +21,8 @@
 		296ED8DE2146252B0067F780 /* HTTPType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED8D82146252A0067F780 /* HTTPType.swift */; };
 		296ED8DF2146252B0067F780 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED8D92146252B0067F780 /* Api.swift */; };
 		296ED8E02146252B0067F780 /* HTTPClientBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED8DA2146252B0067F780 /* HTTPClientBase.swift */; };
+		296ED8E221463A290067F780 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED8E121463A290067F780 /* SwiftViewController.swift */; };
+		296ED992214BBC740067F780 /* ice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 296ED991214BBC740067F780 /* ice@2x.png */; };
 		2FFF8E6725730DAB78B7B357 /* libPods-NetWorkTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 730DEF80B6B5BB836F44A2DD /* libPods-NetWorkTool.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		296ED8D82146252A0067F780 /* HTTPType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPType.swift; sourceTree = "<group>"; };
 		296ED8D92146252B0067F780 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		296ED8DA2146252B0067F780 /* HTTPClientBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientBase.swift; sourceTree = "<group>"; };
+		296ED8E121463A290067F780 /* SwiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
+		296ED991214BBC740067F780 /* ice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ice@2x.png"; sourceTree = "<group>"; };
 		730DEF80B6B5BB836F44A2DD /* libPods-NetWorkTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NetWorkTool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE27654096C0C032650ECF5E /* Pods-NetWorkTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTool/Pods-NetWorkTool.release.xcconfig"; sourceTree = "<group>"; };
 		F99B975A82382347229ADD25 /* Pods-NetWorkTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetWorkTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetWorkTool/Pods-NetWorkTool.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 		296ED8862145288B0067F780 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				296ED991214BBC740067F780 /* ice@2x.png */,
 				296ED8D92146252B0067F780 /* Api.swift */,
 				296ED8D52146252A0067F780 /* HTTPClient.swift */,
 				296ED8DA2146252B0067F780 /* HTTPClientBase.swift */,
@@ -172,6 +177,7 @@
 				296ED8D82146252A0067F780 /* HTTPType.swift */,
 				296ED8D62146252A0067F780 /* RxHTTP.swift */,
 				296ED888214528C10067F780 /* NetWorkTool-Bridging-Header.h */,
+				296ED8E121463A290067F780 /* SwiftViewController.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296ED992214BBC740067F780 /* ice@2x.png in Resources */,
 				296ED8612145272F0067F780 /* LaunchScreen.storyboard in Resources */,
 				296ED85E2145272F0067F780 /* Assets.xcassets in Resources */,
 				296ED85C2145272A0067F780 /* Main.storyboard in Resources */,
@@ -345,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296ED8E221463A290067F780 /* SwiftViewController.swift in Sources */,
 				296ED8592145272A0067F780 /* ViewController.m in Sources */,
 				296ED8DC2146252B0067F780 /* RxHTTP.swift in Sources */,
 				296ED8E02146252B0067F780 /* HTTPClientBase.swift in Sources */,
@@ -525,6 +533,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DJYBGN25Y2;
 				INFOPLIST_FILE = NetWorkTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -548,6 +557,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DJYBGN25Y2;
 				INFOPLIST_FILE = NetWorkTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

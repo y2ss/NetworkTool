@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "NetWorkTool-Swift.h"
 
 @interface ViewController ()
 
@@ -16,9 +17,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
     // Do any additional setup after loading the view, typically from a nib.
 }
+- (IBAction)onSwift:(id)sender {
 
+    SwiftViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SwiftViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)onOC:(id)sender {
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

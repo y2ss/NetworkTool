@@ -22,24 +22,53 @@ class HTTPClient: HTTPClientBase {
         super.init(timeout: timeout)
     }
     
-    @discardableResult
-    func requestJSON<S: HTTPType>(_ api: S, params: [String: Any]? = nil, success: ((JSON) -> Void)? = nil, failed: ((HTTPError) -> Void)? = nil) -> DataRequest {
+    override func getCommonHeaders() -> [String : String]? {
+        return super.getCommonHeaders()
+    }
+    
+    private func _url<S: HTTPType>(_ api: S) -> URL {
         var url = api.baseURL
         if let _url = URL(string: api.baseURL.absoluteString + api.path) {
             url = _url
         }
-        return self
-            ._requestJSON(withBlock: url, method: api.method, params: params, encoding: api.encoding, headers: api.header, success: success, failed: failed)
+        return url
+    }
+    
+    private func _configuration<S: HTTPType>(_ api: S) {
+        if let timeout = api.requestTimeout {
+            self.setRequestTimeout(timeout)
+        }
+        if let timeout = api.responseTimeout {
+            self.setResponseTimeout(timeout)
+        }
     }
     
     @discardableResult
-    func requestString<S: HTTPType>(_ api: S, params: [String: Any]? = nil, success: ((String) -> Void)? = nil, failed: ((HTTPError) -> Void)? = nil) -> DataRequest {
-        var url = api.baseURL
-        if let _url = URL(string: api.baseURL.absoluteString + api.path) {
-            url = _url
-        }
+    func requestJSON<S: HTTPType>(_ api: S, params: [String: Any]? = nil, headers: [String: String]? = nil, success: ((JSON) -> Void)? = nil, failed: ((HTTPError) -> Void)? = nil) -> DataRequest {
+        let url = _url(api)
+        _configuration(api)
         return self
-            ._requestString(withBlock: url, method: api.method, params: params, encoding: api.encoding, headers: api.header, success: success, failed: failed)
+            ._requestJSON(withBlock: url, method: api.method, params: params, encoding: api.encoding, headers: headers, success: success, failed: failed)
     }
     
+    @discardableResult
+    func requestString<S: HTTPType>(_ api: S, params: [String: Any]? = nil, headers: [String: String]? = nil, success: ((String) -> Void)? = nil, failed: ((HTTPError) -> Void)? = nil) -> DataRequest {
+        let url = _url(api)
+        _configuration(api)
+        return self
+            ._requestString(withBlock: url, method: api.method, params: params, encoding: api.encoding, headers: headers, success: success, failed: failed)
+    }
+
+    func upload<S: HTTPType>(_ api: S, fileName: String, data: Data, params: [String: Any]? = nil, headers: [String: String]? = nil, progressChanged:((Double) -> Void)? = nil, success: ((JSON) -> Void)? = nil, failed: ((HTTPError) -> Void)? = nil) {
+        let url = self._url(api)
+        _configuration(api)
+        self.uploadFile(withBlock: url, fileName: fileName, dataOrfileURL: data, method: api.method, headers: headers, params: params, progressChanged: progressChanged, success: success, failed: failed)
+    }
+    
+    
+    func upload<S: HTTPType>(_ api: S, fileURL: URL, fileName: String?, params: [String: Any]? = nil, headers: [String: String]? = nil, progressChanged:((Double) -> Void)? = nil, success: ((JSON) -> Void)? = nil, failed: ((HTTPError) -> Void)? = nil) {
+        let url = _url(api)
+        _configuration(api)
+        self.uploadFile(withBlock: url, fileName: fileName, dataOrfileURL: fileURL, method: api.method, headers: headers, params: params, progressChanged: progressChanged, success: success, failed: failed)
+    }
 }
