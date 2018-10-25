@@ -164,6 +164,7 @@ extension HTTPClientBase {
             let request = self
                 ._request(url, method: method, params: params, encoding: encoding, headers: headers)
                 .responseString(completionHandler: { rsp in
+                    print(rsp)
                     switch rsp.result {
                     case .success(let value):
                         print("value:\(value)")
@@ -195,10 +196,10 @@ extension HTTPClientBase {
             let request = self
                 ._request(url, method: method, params: params, encoding: encoding, headers: headers)
                 .responseJSON(completionHandler: { rsp in
+                    print(rsp.response ?? rsp)
                     switch rsp.result {
                     case .success(let value):
                         let json = JSON(value)//已经判断过json
-                        print("JSON:\(json)")
                         obs.onNext(json)
                         obs.onCompleted()
                         break
@@ -215,6 +216,7 @@ extension HTTPClientBase {
             .observeOn(MainScheduler.instance)
     }
     
+
     
     func _requestJSON(withBlock
         url: URLConvertible,
@@ -227,10 +229,10 @@ extension HTTPClientBase {
         return self
             ._request(url, method: method, params: params, encoding: encoding, headers: headers)
             .responseJSON(completionHandler: { rsp in
+                print(rsp)
                 switch rsp.result {
                 case .success(let value):
-                    let json = JSON(value)
-                    print("JSON:\(json)")
+                    let json = JSON(value)//已经判断过json
                     success?(json)
                     break
                 case .failure(let error):
@@ -243,15 +245,16 @@ extension HTTPClientBase {
     
     func _requestString(withBlock
         url: URLConvertible,
-                        method: HTTPMethod,
-                        params: Parameters?,
-                        encoding: ParameterEncoding,
-                        headers: HTTPHeaders?,
-                        success: ((String) -> Void)?,
-                        failed: ((HTTPError) -> Void)?) -> DataRequest {
+        method: HTTPMethod,
+        params: Parameters?,
+        encoding: ParameterEncoding,
+        headers: HTTPHeaders?,
+        success: ((String) -> Void)?,
+        failed: ((HTTPError) -> Void)?) -> DataRequest {
         return self
             ._request(url, method: method, params: params, encoding: encoding, headers: headers)
             .responseString(completionHandler: { rsp in
+                print(rsp)
                 switch rsp.result {
                 case .success(let value):
                     print("value:\(value)")
@@ -277,7 +280,6 @@ extension HTTPClientBase {
         ) -> Observable<JSON> {
         return Observable<JSON>.create({ obs in
             let newHeaders: [String: String] = self._getHeaders(headers)
-            
             var request: Request?
             self.session
                 .upload(multipartFormData: multipartFormData,
@@ -285,6 +287,7 @@ extension HTTPClientBase {
                         method: method,
                         headers: newHeaders,
                         encodingCompletion: { encodingResult in
+                            print(encodingResult)
                             switch encodingResult {
                             case .success(let upload, _, _):
                                 request = upload.uploadProgress(closure: {
@@ -292,6 +295,7 @@ extension HTTPClientBase {
                                 })
                                     .validate()
                                     .responseJSON(completionHandler: { rsp in
+                                        print(rsp)
                                         switch rsp.result {
                                         case .success(let value):
                                             let json = JSON(value)
@@ -373,6 +377,7 @@ extension HTTPClientBase {
                     method: method,
                     headers: newHeaders,
                     encodingCompletion: { encodingCompletion in
+                        print(encodingCompletion)
                         switch encodingCompletion {
                         case .success(let request, _, _):
                             request.uploadProgress(closure: {
@@ -380,6 +385,7 @@ extension HTTPClientBase {
                             })
                                 .validate()
                                 .responseJSON(completionHandler: { rsp in
+                                    print(rsp)
                                     switch rsp.result {
                                     case .success(let value):
                                         let json = JSON(value)
@@ -441,6 +447,62 @@ extension HTTPClientBase {
                         progressChanged: progressChanged,
                         success: success,
                         failed: failed)
+    }
+}
+
+typealias DestinationURL = ((_ documentsURL: URL) -> (fileURL: URL?, fileName: String?))
+
+//MARK: - download
+extension HTTPClientBase {
+    func downloadFile(
+        _ url: URLConvertible,
+        destinationURL: DestinationURL?,
+        fileName: String?,
+        method: HTTPMethod,
+        headers: HTTPHeaders?,
+        params: Parameters?,
+        encoding: ParameterEncoding,
+        progressChanged: ((Double)->Void)?,
+        success:((DownloadResponse<Data>, URL?)->Void)?,
+        failed:((DownloadResponse<Data>, HTTPError)->Void)?
+        ) -> DownloadRequest {
+        let newHeaders = self._getHeaders(headers)
+        let destination: DownloadRequest.DownloadFileDestination = { _, response in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            var fileURL: URL = documentsURL.appendingPathComponent(response.suggestedFilename ?? "\(Date())", isDirectory: false)
+            if let dURL = destinationURL?(documentsURL) {
+                if let _ = dURL.fileURL {
+                    fileURL = dURL.fileURL!
+                } else {
+                    fileURL = documentsURL.appendingPathComponent(fileName ?? response.suggestedFilename!, isDirectory: false)
+                }
+            }
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        return session
+            .download(url,
+                      method: method,
+                      parameters: params,
+                      encoding: encoding,
+                      headers: newHeaders,
+                      to: destination)
+            .downloadProgress(closure: { progress in
+                progressChanged?(progress.fractionCompleted)
+            })
+            .responseData(completionHandler: { rsp in
+                print(rsp.response ?? rsp)
+                switch rsp.result {
+                case .success(_):
+                    print("url:\(String(describing: rsp.destinationURL))")
+                    success?(rsp, rsp.destinationURL)
+                    break
+                case .failure(let error):
+                    let httpError = self.handleDownloadError(error, data: rsp.resumeData)
+                    failed?(rsp, httpError)
+                    break
+                }
+            })
     }
 }
 

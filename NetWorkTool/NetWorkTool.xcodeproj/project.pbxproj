@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29443B12216DA02F008F707E /* WebSocketMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29443B11216DA02F008F707E /* WebSocketMgr.swift */; };
+		29443B5E217EBE2C008F707E /* SSBasicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B5D217EBE2B008F707E /* SSBasicRequest.m */; };
+		29443B61217EF11A008F707E /* SSHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B60217EF11A008F707E /* SSHTTPManager.m */; };
+		29443B64217EF74C008F707E /* SSHTTPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B63217EF74C008F707E /* SSHTTPConfig.m */; };
+		29443B672180505F008F707E /* SSHTTPPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B662180505F008F707E /* SSHTTPPrivate.m */; };
+		29443B6A2180526D008F707E /* SSHTTPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B692180526D008F707E /* SSHTTPUtils.m */; };
+		29443B6F21816864008F707E /* OCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B6E21816864008F707E /* OCViewController.m */; };
+		29443B7321816892008F707E /* GetCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B7221816892008F707E /* GetCodeApi.m */; };
+		29443B7621818D1E008F707E /* RegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B7521818D1E008F707E /* RegisterApi.m */; };
+		29443B7921819D4A008F707E /* DownloadFileApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B7821819D4A008F707E /* DownloadFileApi.m */; };
+		29443B7C2181A9CB008F707E /* UploadFileApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 29443B7B2181A9CB008F707E /* UploadFileApi.m */; };
+		29497B3221549EC10019B4D6 /* WSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29497B3121549EC10019B4D6 /* WSViewController.swift */; };
+		29497B362154BDE30019B4D6 /* SocketMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29497B352154BDE30019B4D6 /* SocketMgr.swift */; };
+		296B8EF3214F839B00859431 /* temp.gif in Resources */ = {isa = PBXBuildFile; fileRef = 296B8EF2214F839B00859431 /* temp.gif */; };
 		296ED8562145272A0067F780 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 296ED8552145272A0067F780 /* AppDelegate.m */; };
 		296ED8592145272A0067F780 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296ED8582145272A0067F780 /* ViewController.m */; };
 		296ED85C2145272A0067F780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 296ED85A2145272A0067F780 /* Main.storyboard */; };
@@ -44,6 +58,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29443B11216DA02F008F707E /* WebSocketMgr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketMgr.swift; sourceTree = "<group>"; };
+		29443B5C217EBE2B008F707E /* SSBasicRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSBasicRequest.h; sourceTree = "<group>"; };
+		29443B5D217EBE2B008F707E /* SSBasicRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSBasicRequest.m; sourceTree = "<group>"; };
+		29443B5F217EF11A008F707E /* SSHTTPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTTPManager.h; sourceTree = "<group>"; };
+		29443B60217EF11A008F707E /* SSHTTPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSHTTPManager.m; sourceTree = "<group>"; };
+		29443B62217EF74C008F707E /* SSHTTPConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTTPConfig.h; sourceTree = "<group>"; };
+		29443B63217EF74C008F707E /* SSHTTPConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSHTTPConfig.m; sourceTree = "<group>"; };
+		29443B652180505F008F707E /* SSHTTPPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTTPPrivate.h; sourceTree = "<group>"; };
+		29443B662180505F008F707E /* SSHTTPPrivate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSHTTPPrivate.m; sourceTree = "<group>"; };
+		29443B682180526D008F707E /* SSHTTPUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTTPUtils.h; sourceTree = "<group>"; };
+		29443B692180526D008F707E /* SSHTTPUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSHTTPUtils.m; sourceTree = "<group>"; };
+		29443B6B218161CA008F707E /* SSHTTPClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSHTTPClient.h; sourceTree = "<group>"; };
+		29443B6D21816864008F707E /* OCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCViewController.h; sourceTree = "<group>"; };
+		29443B6E21816864008F707E /* OCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCViewController.m; sourceTree = "<group>"; };
+		29443B7121816892008F707E /* GetCodeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCodeApi.h; sourceTree = "<group>"; };
+		29443B7221816892008F707E /* GetCodeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCodeApi.m; sourceTree = "<group>"; };
+		29443B7421818D1E008F707E /* RegisterApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterApi.h; sourceTree = "<group>"; };
+		29443B7521818D1E008F707E /* RegisterApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterApi.m; sourceTree = "<group>"; };
+		29443B7721819D4A008F707E /* DownloadFileApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadFileApi.h; sourceTree = "<group>"; };
+		29443B7821819D4A008F707E /* DownloadFileApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadFileApi.m; sourceTree = "<group>"; };
+		29443B7A2181A9CB008F707E /* UploadFileApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadFileApi.h; sourceTree = "<group>"; };
+		29443B7B2181A9CB008F707E /* UploadFileApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadFileApi.m; sourceTree = "<group>"; };
+		29497B3121549EC10019B4D6 /* WSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSViewController.swift; sourceTree = "<group>"; };
+		29497B352154BDE30019B4D6 /* SocketMgr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketMgr.swift; sourceTree = "<group>"; };
+		296B8EF2214F839B00859431 /* temp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = temp.gif; sourceTree = "<group>"; };
 		296ED8512145272A0067F780 /* NetWorkTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorkTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		296ED8542145272A0067F780 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		296ED8552145272A0067F780 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -108,6 +147,61 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		29443B6C21816297008F707E /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				29443B5C217EBE2B008F707E /* SSBasicRequest.h */,
+				29443B5D217EBE2B008F707E /* SSBasicRequest.m */,
+				29443B5F217EF11A008F707E /* SSHTTPManager.h */,
+				29443B60217EF11A008F707E /* SSHTTPManager.m */,
+				29443B62217EF74C008F707E /* SSHTTPConfig.h */,
+				29443B63217EF74C008F707E /* SSHTTPConfig.m */,
+				29443B652180505F008F707E /* SSHTTPPrivate.h */,
+				29443B662180505F008F707E /* SSHTTPPrivate.m */,
+				29443B682180526D008F707E /* SSHTTPUtils.h */,
+				29443B692180526D008F707E /* SSHTTPUtils.m */,
+				29443B6B218161CA008F707E /* SSHTTPClient.h */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		29443B7021816871008F707E /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				29443B7121816892008F707E /* GetCodeApi.h */,
+				29443B7221816892008F707E /* GetCodeApi.m */,
+				29443B7421818D1E008F707E /* RegisterApi.h */,
+				29443B7521818D1E008F707E /* RegisterApi.m */,
+				29443B7721819D4A008F707E /* DownloadFileApi.h */,
+				29443B7821819D4A008F707E /* DownloadFileApi.m */,
+				29443B7A2181A9CB008F707E /* UploadFileApi.h */,
+				29443B7B2181A9CB008F707E /* UploadFileApi.m */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		29497B332154BD310019B4D6 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				296ED8D92146252B0067F780 /* Api.swift */,
+				296ED8D52146252A0067F780 /* HTTPClient.swift */,
+				296ED8DA2146252B0067F780 /* HTTPClientBase.swift */,
+				296ED8D72146252A0067F780 /* HTTPError.swift */,
+				296ED8D82146252A0067F780 /* HTTPType.swift */,
+				296ED8D62146252A0067F780 /* RxHTTP.swift */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		29497B342154BD4C0019B4D6 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				29497B352154BDE30019B4D6 /* SocketMgr.swift */,
+				29443B11216DA02F008F707E /* WebSocketMgr.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 		296ED8482145272A0067F780 = {
 			isa = PBXGroup;
 			children = (
@@ -169,15 +263,13 @@
 		296ED8862145288B0067F780 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				29497B332154BD310019B4D6 /* HTTP */,
+				29497B342154BD4C0019B4D6 /* Socket */,
+				296B8EF2214F839B00859431 /* temp.gif */,
 				296ED991214BBC740067F780 /* ice@2x.png */,
-				296ED8D92146252B0067F780 /* Api.swift */,
-				296ED8D52146252A0067F780 /* HTTPClient.swift */,
-				296ED8DA2146252B0067F780 /* HTTPClientBase.swift */,
-				296ED8D72146252A0067F780 /* HTTPError.swift */,
-				296ED8D82146252A0067F780 /* HTTPType.swift */,
-				296ED8D62146252A0067F780 /* RxHTTP.swift */,
 				296ED888214528C10067F780 /* NetWorkTool-Bridging-Header.h */,
 				296ED8E121463A290067F780 /* SwiftViewController.swift */,
+				29497B3121549EC10019B4D6 /* WSViewController.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -185,6 +277,10 @@
 		296ED887214528920067F780 /* OC */ = {
 			isa = PBXGroup;
 			children = (
+				29443B7021816871008F707E /* Api */,
+				29443B6C21816297008F707E /* HTTP */,
+				29443B6D21816864008F707E /* OCViewController.h */,
+				29443B6E21816864008F707E /* OCViewController.m */,
 			);
 			path = OC;
 			sourceTree = "<group>";
@@ -305,6 +401,7 @@
 			files = (
 				296ED992214BBC740067F780 /* ice@2x.png in Resources */,
 				296ED8612145272F0067F780 /* LaunchScreen.storyboard in Resources */,
+				296B8EF3214F839B00859431 /* temp.gif in Resources */,
 				296ED85E2145272F0067F780 /* Assets.xcassets in Resources */,
 				296ED85C2145272A0067F780 /* Main.storyboard in Resources */,
 			);
@@ -352,16 +449,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29443B7621818D1E008F707E /* RegisterApi.m in Sources */,
+				29443B61217EF11A008F707E /* SSHTTPManager.m in Sources */,
 				296ED8E221463A290067F780 /* SwiftViewController.swift in Sources */,
+				29443B12216DA02F008F707E /* WebSocketMgr.swift in Sources */,
+				29443B7921819D4A008F707E /* DownloadFileApi.m in Sources */,
 				296ED8592145272A0067F780 /* ViewController.m in Sources */,
+				29497B3221549EC10019B4D6 /* WSViewController.swift in Sources */,
+				29443B64217EF74C008F707E /* SSHTTPConfig.m in Sources */,
 				296ED8DC2146252B0067F780 /* RxHTTP.swift in Sources */,
+				29443B6F21816864008F707E /* OCViewController.m in Sources */,
 				296ED8E02146252B0067F780 /* HTTPClientBase.swift in Sources */,
+				29443B5E217EBE2C008F707E /* SSBasicRequest.m in Sources */,
+				29497B362154BDE30019B4D6 /* SocketMgr.swift in Sources */,
 				296ED864214527300067F780 /* main.m in Sources */,
 				296ED8DB2146252B0067F780 /* HTTPClient.swift in Sources */,
 				296ED8DD2146252B0067F780 /* HTTPError.swift in Sources */,
+				29443B672180505F008F707E /* SSHTTPPrivate.m in Sources */,
 				296ED8562145272A0067F780 /* AppDelegate.m in Sources */,
+				29443B7321816892008F707E /* GetCodeApi.m in Sources */,
 				296ED8DF2146252B0067F780 /* Api.swift in Sources */,
+				29443B7C2181A9CB008F707E /* UploadFileApi.m in Sources */,
 				296ED8DE2146252B0067F780 /* HTTPType.swift in Sources */,
+				29443B6A2180526D008F707E /* SSHTTPUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

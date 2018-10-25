@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NetWorkTool-Swift.h"
+#import "OCViewController.h"
 
 @interface ViewController ()
 
@@ -28,7 +29,8 @@
 }
 
 - (IBAction)onOC:(id)sender {
-    
+    OCViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OCViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

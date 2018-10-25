@@ -13,6 +13,7 @@ protocol HTTPType {
     var baseURL: URL { get }
     var path: String { get }
     var method: HTTPMethod { get }
+    var header: HTTPHeaders? { get }
     var encoding: ParameterEncoding { get }
     var requestTimeout: TimeInterval? { get }
     var responseTimeout: TimeInterval? { get }
@@ -20,7 +21,9 @@ protocol HTTPType {
 
 extension HTTPType {
     var baseURL: URL {
-        return URL(string: "http://119.29.139.84")!
+        //return URL(string: "http://192.168.0.33:8083")!
+        return URL(string: "http://localhost:8083")!
+        //return URL(string: "http://119.29.40.174")!
     }
     
     var path: String {
@@ -29,6 +32,10 @@ extension HTTPType {
     
     var method: HTTPMethod {
         return .get
+    }
+    
+    var header: HTTPHeaders? {
+        return nil
     }
     
     var encoding: ParameterEncoding {
@@ -42,4 +49,5 @@ extension HTTPType {
     var responseTimeout: TimeInterval? {
         return nil
     }
+    
 }

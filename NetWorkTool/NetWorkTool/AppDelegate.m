@@ -17,6 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [SSHTTPConfig sharedConfig].baseURL = @"http://119.29.40.174:8085";
+    
     return YES;
 }
 

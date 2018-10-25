@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 import SwiftyJSON
 
 enum HTTPError:Error, LocalizedError {
@@ -20,6 +21,7 @@ enum HTTPError:Error, LocalizedError {
     case cancelled
     case null
     case other(String)
+    case errorWithResponse(Error, DataResponse<Any>)
     
     var errorDescription: String? {
         switch self {
@@ -47,6 +49,11 @@ enum HTTPError:Error, LocalizedError {
             return "未知错误"
         case .other(let msg):
             return msg
+        case .errorWithResponse(let error, let rsp):
+            if let rsp_error = rsp.error {
+                return rsp_error.localizedDescription
+            }
+            return error.localizedDescription
         }
     }
 }

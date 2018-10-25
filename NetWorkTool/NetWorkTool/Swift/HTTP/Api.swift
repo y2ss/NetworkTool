@@ -14,7 +14,11 @@ enum Api {
     case captcha
     case register
     case setUserInfo
+    case getUserInfo
     case uploadAvater
+    case test
+    case download
+    case validateCode
 }
 
 extension Api: HTTPType {
@@ -22,7 +26,7 @@ extension Api: HTTPType {
         switch self {
         case .login, .register, .setUserInfo, .uploadAvater:
             return .post
-        case .captcha:
+        case .captcha, .getUserInfo, .test, .download, .validateCode:
             return .get
         }
     }
@@ -39,6 +43,14 @@ extension Api: HTTPType {
             return "/userinfo/setUserinfo"
         case .uploadAvater:
             return "/userinfo/uploadAvater"
+        case .getUserInfo:
+            return "/userinfo/getUserinfo"
+        case .test:
+            return "/test"
+        case .download:
+            return "/upload/video/video1.mp4"
+        case .validateCode:
+            return "/user/vac"
         }
     }
     
@@ -46,14 +58,14 @@ extension Api: HTTPType {
         switch self {
         case .login, .register, .uploadAvater, .setUserInfo:
             return JSONEncoding.default
-        case .captcha:
+        case .captcha, .getUserInfo, .test, .download, .validateCode:
             return URLEncoding.default
         }
     }
     
     var requestTimeout: TimeInterval? {
         switch self {
-        case .uploadAvater:
+        case .uploadAvater, .download:
             return 600
         default:
             return nil
@@ -62,8 +74,17 @@ extension Api: HTTPType {
     
     var responseTimeout: TimeInterval? {
         switch self {
-        case .uploadAvater:
+        case .uploadAvater, .download:
             return 600
+        default:
+            return nil
+        }
+    }
+    
+    var header: HTTPHeaders? {//get时header带上token post时body带token
+        switch self {
+        case .getUserInfo:
+            return ["token": UserDefaults.standard.object(forKey: "token") as! String]
         default:
             return nil
         }

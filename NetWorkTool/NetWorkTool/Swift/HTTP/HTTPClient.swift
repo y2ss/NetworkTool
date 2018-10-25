@@ -23,7 +23,16 @@ class HTTPClient: HTTPClientBase {
     }
     
     override func getCommonHeaders() -> [String : String]? {
-        return super.getCommonHeaders()
+        if var headers = super.getCommonHeaders() {
+            headers["Accept"] = "application/json"
+            headers["Content-Type"] = "application/json"
+            return headers
+        } else {
+            return [
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            ]
+        }
     }
     
     private func _url<S: HTTPType>(_ api: S) -> URL {

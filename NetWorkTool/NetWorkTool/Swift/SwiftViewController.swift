@@ -19,6 +19,18 @@ class SwiftViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        let data = [
+//            "code":"13725554033"
+//        ]
+//        RxHTTP.shared
+//            .requestJSON(Api.validateCode, params: data)
+//            .subscribe(onNext: { json in
+//                print(json)
+//            }, onError: { error in
+//                print(error)
+//            })
+//            .disposed(by: disposeBag)
+//
     }
     
     @IBAction func getCaptcha(_ sender: Any) {
@@ -31,6 +43,14 @@ class SwiftViewController: UIViewController {
     
     @IBAction func onRegister(_ sender: Any) {
         register()
+//        RxHTTP.shared
+//            .requestJSON(Api.test)
+//            .subscribe(onNext: { json in
+//                print(json)
+//            }, onError: { error in
+//                print(error)
+//            })
+//        .disposed(by: disposeBag)
     }
     
     @IBAction func onUserinfo(_ sender: UIButton) {
@@ -38,6 +58,19 @@ class SwiftViewController: UIViewController {
         uploadAvater()
     }
     
+    @IBAction func onGetUserinfo(_ sender: Any) {
+        getUserInfo()
+    }
+    
+ 
+    @IBAction func onDownload(_ sender: Any) {
+        downloadFile()
+    }
+    
+    @IBAction func onIM(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WSViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension SwiftViewController {
@@ -54,6 +87,11 @@ extension SwiftViewController {
             })
             .subscribe(onNext: { json in
                 print(json)
+                if let data = json["data"].dictionary {
+                    if let token = data["token"]?.string {
+                        UserDefaults.standard.set(token, forKey: "token")
+                    }
+                }
             }, onError: { error in
                 print(error)
             }, onDisposed: {
@@ -63,15 +101,19 @@ extension SwiftViewController {
     }
     
     fileprivate func code() {
+        let data = [
+            "username":"13725554033"
+        ]
         RxHTTP.shared
-            .requestJSON(Api.captcha)
+            .requestJSON(Api.captcha, params: data)
             .do(onSubscribe: {
                 print("开始请求1")
             }, onDispose: {
                 print("结束请求1")
             })
             .subscribe(onNext: { json in
-                self._code = json["data"].intValue
+                print(json)
+                self._code = json["data"]["code"].intValue
             }, onError: { error in
                 print(error.localizedDescription)
             })
@@ -94,26 +136,38 @@ extension SwiftViewController {
     }
     
     fileprivate func uploadAvater() {
-        if let data = UIImagePNGRepresentation(UIImage(named: "ice@2x.png")!) {
-            RxHTTP.shared
-                .upload(Api.uploadAvater, fileName: "ss", data: data) { progress in
-                    print(progress)
-                }
-                .subscribe(onNext: { json in
-                    if let data = json["data"].dictionary {
-                        if let url = data["url"]?.string {
-                            self.setUserinfo(url)
-                        }
+        if
+            let path = Bundle.main.path(forResource: "ice@2x.png", ofType: nil) {
+            let url = URL.init(fileURLWithPath: path)
+            do {
+                let data = try Data.init(contentsOf: url)
+                let param: [String: Any] = [
+                    "token":UserDefaults.standard.object(forKey: "token") as! String
+                ]
+                RxHTTP.shared
+                    .upload(Api.uploadAvater, fileName: "imgss", data: data, params: param) { progress in
+                        print(progress)
                     }
-                }, onError: { error in
-                    print(error)
-                })
-                .disposed(by: disposeBag)
+                    .subscribe(onNext: { json in
+                        print(json)
+                        if let data = json["data"].dictionary {
+                            if let url = data["url"]?.string {
+                                self.setUserinfo(url)
+                            }
+                        }
+                    }, onError: { error in
+                        print(error)
+                    })
+                    .disposed(by: disposeBag)
+            } catch {
+                print(error)
+            }
         }
     }
     
     fileprivate func setUserinfo(_ url: String) {
         let data: [String: Any] = [
+            "token":UserDefaults.standard.object(forKey: "token") as! String,
             "uid":"115369211734923996",
             "gender":2,
             "nickname":"珊珊",
@@ -129,7 +183,36 @@ extension SwiftViewController {
             .disposed(by: disposeBag)
     }
     
+    fileprivate func getUserInfo() {
+        let data: [String: Any] = [
+            "uid" : "115369211734923996",
+        ]
+        RxHTTP.shared
+            .requestJSON(Api.getUserInfo, params: data)
+            .subscribe(onNext: { json in
+                print(json)
+            }, onError: { error in
+                print(error)
+            })
+            .disposed(by: disposeBag)
+    }
     
+    fileprivate func downloadFile() {
+        RxHTTP.shared
+            .download(Api.download,
+                      destinationURL: { (url) -> (fileURL: URL?, fileName: String?) in
+                        print(url)
+                        let path = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+                        let _url = path.appendingPathComponent("ss.mp4", isDirectory: false)
+                        return (_url, nil)
+            }, progressChanged: { progress in
+                print(progress)
+            }, success: { (resp, url) in
+                print(resp)
+            }) { (resp, error) in
+                print(error)
+        }
+    }
 }
 
 extension String {

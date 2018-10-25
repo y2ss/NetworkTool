@@ -5,3 +5,5 @@
 
 
 #import <CommonCrypto/CommonCrypto.h>
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
+#import <SocketRocket.h>
