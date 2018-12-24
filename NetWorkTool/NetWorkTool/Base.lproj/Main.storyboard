@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1M1-Ig-fpC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1M1-Ig-fpC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -89,71 +88,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcx-4a-HuA">
-                                <rect key="frame" x="149" y="85" width="77" height="30"/>
-                                <state key="normal" title="获取验证码"/>
+                                <rect key="frame" x="172.5" y="85" width="30" height="30"/>
+                                <state key="normal" title="test"/>
                                 <connections>
                                     <action selector="getCaptcha:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="ZmW-1f-oxM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6B-d0-QOm">
-                                <rect key="frame" x="172" y="125" width="31" height="30"/>
-                                <state key="normal" title="登入"/>
-                                <connections>
-                                    <action selector="onLogin:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="UDl-Cf-RIS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGN-Ol-Ymc">
-                                <rect key="frame" x="172" y="165" width="31" height="30"/>
-                                <state key="normal" title="注册"/>
-                                <connections>
-                                    <action selector="onRegister:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="jaT-M7-31V"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7U-3P-KYv">
-                                <rect key="frame" x="141" y="205" width="92" height="30"/>
-                                <state key="normal" title="上传用户信息"/>
-                                <connections>
-                                    <action selector="onUserinfo:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="TAR-Ig-SQm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eg3-m8-eFK">
-                                <rect key="frame" x="141" y="245" width="92" height="30"/>
-                                <state key="normal" title="获取用户信息"/>
-                                <connections>
-                                    <action selector="onGetUserinfo:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="7Bl-IL-O8K"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mO1-rm-FVD">
-                                <rect key="frame" x="156" y="285" width="62" height="30"/>
+                                <rect key="frame" x="156.5" y="125" width="62" height="30"/>
                                 <state key="normal" title="下载文件"/>
                                 <connections>
                                     <action selector="onDownload:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="ZsZ-9M-Dpw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2DD-ua-G5t">
-                                <rect key="frame" x="172" y="325" width="30" height="30"/>
-                                <state key="normal" title="IM"/>
+                                <rect key="frame" x="149" y="165" width="77" height="30"/>
+                                <state key="normal" title="Websocket"/>
                                 <connections>
                                     <action selector="onIM:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="4Sj-SY-eiQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Llu-pp-99M">
+                                <rect key="frame" x="163.5" y="205" width="48" height="30"/>
+                                <state key="normal" title="Socket"/>
+                                <connections>
+                                    <action selector="onSocketAction:" destination="vKv-Rq-MSe" eventType="touchUpInside" id="3a0-Gj-hnE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mO1-rm-FVD" firstAttribute="centerX" secondItem="Eg3-m8-eFK" secondAttribute="centerX" id="Apl-KK-grs"/>
-                            <constraint firstItem="p7U-3P-KYv" firstAttribute="top" secondItem="OGN-Ol-Ymc" secondAttribute="bottom" constant="10" id="AxS-dd-RWB"/>
-                            <constraint firstItem="p7U-3P-KYv" firstAttribute="centerX" secondItem="OGN-Ol-Ymc" secondAttribute="centerX" id="Fl8-Zk-iGN"/>
-                            <constraint firstItem="mO1-rm-FVD" firstAttribute="top" secondItem="Eg3-m8-eFK" secondAttribute="bottom" constant="10" id="G21-fR-k9v"/>
+                            <constraint firstItem="Llu-pp-99M" firstAttribute="centerX" secondItem="2DD-ua-G5t" secondAttribute="centerX" id="HUz-Hq-B7H"/>
                             <constraint firstItem="Hcx-4a-HuA" firstAttribute="centerX" secondItem="ri1-A7-xNz" secondAttribute="centerX" id="Hae-mB-Yko"/>
-                            <constraint firstItem="OGN-Ol-Ymc" firstAttribute="top" secondItem="Y6B-d0-QOm" secondAttribute="bottom" constant="10" id="NEO-tH-2d8"/>
+                            <constraint firstItem="mO1-rm-FVD" firstAttribute="top" secondItem="Hcx-4a-HuA" secondAttribute="bottom" constant="10" id="JdS-Lw-FND"/>
                             <constraint firstItem="2DD-ua-G5t" firstAttribute="top" secondItem="mO1-rm-FVD" secondAttribute="bottom" constant="10" id="Pbd-bR-nIh"/>
                             <constraint firstItem="2DD-ua-G5t" firstAttribute="centerX" secondItem="mO1-rm-FVD" secondAttribute="centerX" id="Vtf-br-ynX"/>
                             <constraint firstItem="Hcx-4a-HuA" firstAttribute="centerY" secondItem="ri1-A7-xNz" secondAttribute="centerY" multiplier="0.3" id="Wqg-Sk-Q8R"/>
-                            <constraint firstItem="Y6B-d0-QOm" firstAttribute="centerX" secondItem="Hcx-4a-HuA" secondAttribute="centerX" id="bPD-bb-qg9"/>
-                            <constraint firstItem="OGN-Ol-Ymc" firstAttribute="centerX" secondItem="Y6B-d0-QOm" secondAttribute="centerX" id="g73-pz-rgA"/>
-                            <constraint firstItem="Y6B-d0-QOm" firstAttribute="top" secondItem="Hcx-4a-HuA" secondAttribute="bottom" constant="10" id="gUX-pg-1rN"/>
-                            <constraint firstItem="Eg3-m8-eFK" firstAttribute="top" secondItem="p7U-3P-KYv" secondAttribute="bottom" constant="10" id="h8G-6E-YK8"/>
-                            <constraint firstItem="Eg3-m8-eFK" firstAttribute="centerX" secondItem="p7U-3P-KYv" secondAttribute="centerX" id="yD9-j2-Ags"/>
+                            <constraint firstItem="Llu-pp-99M" firstAttribute="top" secondItem="2DD-ua-G5t" secondAttribute="bottom" constant="10" id="ZAD-51-P93"/>
+                            <constraint firstItem="mO1-rm-FVD" firstAttribute="centerX" secondItem="ri1-A7-xNz" secondAttribute="centerX" id="xO8-G1-nGc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q6d-yu-3Ny"/>
                     </view>
@@ -172,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="suk-N7-nGE">
-                                <rect key="frame" x="67" y="117" width="240" height="100"/>
+                                <rect key="frame" x="67.5" y="117" width="240" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="UH2-bu-9qN"/>
@@ -182,14 +154,14 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5z-Kg-MTV">
-                                <rect key="frame" x="171.5" y="227" width="31" height="30"/>
+                                <rect key="frame" x="172" y="227" width="31" height="30"/>
                                 <state key="normal" title="发送"/>
                                 <connections>
                                     <action selector="onSend:" destination="9qt-hi-Uo5" eventType="touchUpInside" id="Vib-oc-J0V"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w5T-eM-eNj">
-                                <rect key="frame" x="67" y="357" width="240" height="200"/>
+                                <rect key="frame" x="67.5" y="357" width="240" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -209,13 +181,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="input:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCg-YA-0ib">
-                                <rect key="frame" x="67" y="96" width="44" height="21"/>
+                                <rect key="frame" x="67.5" y="96" width="44" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="response:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXo-v0-HPb">
-                                <rect key="frame" x="67" y="336" width="75.5" height="21"/>
+                                <rect key="frame" x="67.5" y="336" width="75.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

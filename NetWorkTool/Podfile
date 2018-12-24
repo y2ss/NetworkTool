@@ -1,5 +1,6 @@
 platform:ios, '10.0'
 
+source 'https://github.com/CocoaPods/Specs.git'
 target 'NetWorkTool' do
 pod 'AFNetworking'
 pod 'Alamofire', '~> 4.5'
@@ -9,4 +10,5 @@ pod 'RxCocoa',    '~> 4.0'
 pod 'YYCache'
 pod 'CocoaAsyncSocket'
 pod 'SocketRocket'
+#pod 'SSHTTPClients', :git => 'https://github.com/y2ss/SSHTTPClient.git', :tag => '1.0.1'
 end

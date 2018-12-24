@@ -10,8 +10,8 @@ import Foundation
 
 class SocketMgr: NSObject {
     
-    private static let HOST = "119.29.40.174"
-    private static let PORT: UInt16 = 3333
+    private static let HOST = "localhost"
+    private static let PORT: UInt16 = 8333
     private static var __instance = SocketMgr()
     
     class var shared: SocketMgr {
@@ -19,11 +19,9 @@ class SocketMgr: NSObject {
     }
     
     private var socket: GCDAsyncSocket!
-    
     private override init() {
         super.init()
         socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
-        
     }
     
     @discardableResult

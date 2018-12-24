@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SwiftyJSON
+import Alamofire
 
 class SwiftViewController: UIViewController {
     
@@ -18,202 +19,161 @@ class SwiftViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let data = [
-//            "code":"13725554033"
-//        ]
-//        RxHTTP.shared
-//            .requestJSON(Api.validateCode, params: data)
-//            .subscribe(onNext: { json in
-//                print(json)
-//            }, onError: { error in
-//                print(error)
-//            })
-//            .disposed(by: disposeBag)
-//
+        
+    }
+    
+    
+    @IBAction func onSocketAction(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WSViewController") as! WSViewController
+        vc.vctype = .tcp
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func getCaptcha(_ sender: Any) {
-        code()
-    }
-    
-    @IBAction func onLogin(_ sender: Any) {
-        login()
-    }
-    
-    @IBAction func onRegister(_ sender: Any) {
-        register()
+        var api = PositionApi()
+        api.requestWillStop = {
+            print("will stop")
+        }
+        api.requestWillBegin = {
+            print("will begin")
+        }
+        HTTPClient.shared.request(api)
 //        RxHTTP.shared
-//            .requestJSON(Api.test)
-//            .subscribe(onNext: { json in
-//                print(json)
+//            .request(Api.position, params: [:])
+//            .do(onSubscribed: {
+//                print("subscribed")
+//            }, onDispose: {
+//                print("dispose")
+//            })
+//            .subscribe(onNext: { json, string in
+//                print(json ?? JSON.null)
+//                print(string ?? "nil")
 //            }, onError: { error in
 //                print(error)
+//            }, onCompleted: {
+//                print("complete")
 //            })
-//        .disposed(by: disposeBag)
+//            .disposed(by: disposeBag)
+//
+//        HTTPClient.shared
+//            .requestBatch([Api.position, Api.test, Api.bodyinfo, Api.checkPatientExist, Api.deviceSetting, PositionApi()],
+//                          allReuqestCompleted: { response in
+//                            for rep in response {
+//
+//                                print("\(rep)")
+//                            }
+//            }) {
+//               print("error")
+//        }
+        
     }
     
-    @IBAction func onUserinfo(_ sender: UIButton) {
-        //setUserinfo("")
-        uploadAvater()
+    private struct PositionApi: HTTPType {
+        private var _requestWillBegin: HTTPType.RequestWillBeginBlock?
+        var requestWillBegin: HTTPType.RequestWillBeginBlock? {
+            get { return _requestWillBegin }
+            set { _requestWillBegin = newValue }
+        }
     }
-    
-    @IBAction func onGetUserinfo(_ sender: Any) {
-        getUserInfo()
-    }
-    
- 
+
     @IBAction func onDownload(_ sender: Any) {
-        downloadFile()
-    }
     
+    }
+
     @IBAction func onIM(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WSViewController")
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WSViewController") as! WSViewController
+        vc.vctype = .websocket
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension SwiftViewController {
-    fileprivate func login() {
-        let data = [
-            "username":"13725554033",
-            "password":"123456".md5(),
-            "code":"\(_code)"
-        ]
-        RxHTTP.shared
-            .requestJSON(Api.login, params: data)
-            .do(onSubscribe: {
-                print("开始请求2")
-            })
-            .subscribe(onNext: { json in
-                print(json)
-                if let data = json["data"].dictionary {
-                    if let token = data["token"]?.string {
-                        UserDefaults.standard.set(token, forKey: "token")
-                    }
-                }
-            }, onError: { error in
-                print(error)
-            }, onDisposed: {
-                print("结束请求2")
-            })
-            .disposed(by: disposeBag)
+enum Api {
+    case position
+    case test
+    case bodyinfo
+    case checkPatientExist
+    case deviceSetting
+    case error
+}
+
+extension Api: HTTPType {
+    
+    var baseURL: URL {
+        get {
+            return URL(string: "http://localhost:8087")!
+        }
+        set {}
     }
     
-    fileprivate func code() {
-        let data = [
-            "username":"13725554033"
-        ]
-        RxHTTP.shared
-            .requestJSON(Api.captcha, params: data)
-            .do(onSubscribe: {
-                print("开始请求1")
-            }, onDispose: {
-                print("结束请求1")
-            })
-            .subscribe(onNext: { json in
-                print(json)
-                self._code = json["data"]["code"].intValue
-            }, onError: { error in
-                print(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    fileprivate func register() {
-        let data = [
-            "username":"13725554033",
-            "password":"123456".md5()
-        ]
-        HTTPClient.shared
-            .requestJSON(Api.register,
-                         params: data,
-                         success: { json in
-                     print(json)
-            }) { error in
-                print(error)
+    var method: HTTPMethod {
+        switch self {
+        case .position, .test, .bodyinfo, .checkPatientExist, .deviceSetting:
+            return .get
+        default: return .get
         }
     }
     
-    fileprivate func uploadAvater() {
-        if
-            let path = Bundle.main.path(forResource: "ice@2x.png", ofType: nil) {
-            let url = URL.init(fileURLWithPath: path)
-            do {
-                let data = try Data.init(contentsOf: url)
-                let param: [String: Any] = [
-                    "token":UserDefaults.standard.object(forKey: "token") as! String
-                ]
-                RxHTTP.shared
-                    .upload(Api.uploadAvater, fileName: "imgss", data: data, params: param) { progress in
-                        print(progress)
-                    }
-                    .subscribe(onNext: { json in
-                        print(json)
-                        if let data = json["data"].dictionary {
-                            if let url = data["url"]?.string {
-                                self.setUserinfo(url)
-                            }
-                        }
-                    }, onError: { error in
-                        print(error)
-                    })
-                    .disposed(by: disposeBag)
-            } catch {
-                print(error)
+    var path: String {
+        get {
+            switch self {
+            case .position:
+                return "/userinfo/position"
+            case .test:
+                return "/test"
+            case .bodyinfo:
+                return "/patient/bodyInfo"
+            case .checkPatientExist:
+                return "/patient/checkPatientExist"
+            case .deviceSetting:
+                return "/device/getdevicesetting"
+            default:
+                return ""
             }
         }
+        set {}
     }
     
-    fileprivate func setUserinfo(_ url: String) {
-        let data: [String: Any] = [
-            "token":UserDefaults.standard.object(forKey: "token") as! String,
-            "uid":"115369211734923996",
-            "gender":2,
-            "nickname":"珊珊",
-            "url":url
-        ]
-        RxHTTP.shared
-            .requestJSON(Api.setUserInfo, params: data)
-            .subscribe(onNext: { json in
-                print(json)
-            }, onError: { error in
-                print(error)
-            })
-            .disposed(by: disposeBag)
+    
+    var params: Parameters? {
+        get {
+            switch self {
+            case .position, .checkPatientExist:
+                return ["deviceid": "363d7e17-3e00-4a9c-9cef-bf01286f0def"]
+            case .bodyinfo:
+                return ["patient_id": "1154528675903928"]
+            case .deviceSetting:
+                return ["deviceId": "5f51774d-61a4-4e98-b2a1-396c0adbc4fb"]
+            default:
+                return nil
+            }
+        }
+        set {}
     }
     
-    fileprivate func getUserInfo() {
-        let data: [String: Any] = [
-            "uid" : "115369211734923996",
-        ]
-        RxHTTP.shared
-            .requestJSON(Api.getUserInfo, params: data)
-            .subscribe(onNext: { json in
-                print(json)
-            }, onError: { error in
-                print(error)
-            })
-            .disposed(by: disposeBag)
+    var encoding: ParameterEncoding {
+        switch self {
+        case .position, .test, .bodyinfo, .checkPatientExist, .deviceSetting:
+            return URLEncoding.default
+        default:
+            return URLEncoding.default
+        }
     }
     
-    fileprivate func downloadFile() {
-        RxHTTP.shared
-            .download(Api.download,
-                      destinationURL: { (url) -> (fileURL: URL?, fileName: String?) in
-                        print(url)
-                        let path = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-                        let _url = path.appendingPathComponent("ss.mp4", isDirectory: false)
-                        return (_url, nil)
-            }, progressChanged: { progress in
-                print(progress)
-            }, success: { (resp, url) in
-                print(resp)
-            }) { (resp, error) in
-                print(error)
+    var responseType: ResponseType {
+        return .json
+    }
+    
+    var cachePolicy: HTTPClientBase.CachePolicy? {
+        switch self {
+        case .position:
+            return (useCache: true, maxAge: 20, useCacheOnly: true)
+        default:
+            return nil
         }
     }
 }
+
+
 
 extension String {
     func md5() -> String {

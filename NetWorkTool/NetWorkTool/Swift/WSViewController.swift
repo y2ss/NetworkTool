@@ -9,6 +9,13 @@
 import UIKit
 
 class WSViewController: UIViewController, WebSocketMgrDelegate {
+    
+    enum VCType {
+        case websocket
+        case tcp
+    }
+    
+    var vctype: VCType = .websocket
 
     @IBOutlet weak var textView2: UITextView!
     @IBOutlet weak var textView1: UITextView!
@@ -17,30 +24,55 @@ class WSViewController: UIViewController, WebSocketMgrDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        WebSocketMgr.shared.delegate = self
+        if vctype == .websocket {
+            WebSocketMgr.shared.delegate = self
+        } else if vctype == .tcp {
+            
+        }
     }
     
     @IBAction func onSend(_ sender: UIButton) {
-        WebSocketMgr.shared.sendMsg(textView1.text)
+        if vctype == .websocket {
+            WebSocketMgr.shared.sendMsg(textView1.text)
+        } else if vctype == .tcp {
+            SocketMgr.shared.sendMsg(textView1.text)
+        }
+        
     }
     
     @IBAction func onConnect(_ sender: UIButton) {
-        WebSocketMgr.shared.connect("ws://119.29.40.174:8083/ws")
+        if vctype == .websocket {
+            WebSocketMgr.shared.connect("ws://localhost:8083/ws")
+        } else if vctype == .tcp {
+            SocketMgr.shared.connect()
+        }
+        
     }
     
     @IBAction func onDisConnect(_ sender: Any) {
-        WebSocketMgr.shared.close()
+        if vctype == .websocket {
+            WebSocketMgr.shared.close()
+        } else if vctype == .tcp {
+            SocketMgr.shared.disconnect()
+        }
+        
+       
     }
     
     func webSocketDidReceiveMessage(_ msg: Any) {
-        strs.append(msg as! String)
-        strs.append("\n")
-        
-        var text = ""
-        for str in strs {
-            text.append(str)
+        if vctype == .websocket {
+            strs.append(msg as! String)
+            strs.append("\n")
+            
+            var text = ""
+            for str in strs {
+                text.append(str)
+            }
+            textView2.text = text
+        } else if vctype == .tcp {
+            
         }
-        textView2.text = text
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
